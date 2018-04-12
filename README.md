@@ -425,6 +425,39 @@ console.log(array);   // => ['b', 'b']
 _.differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor);             // => [1.2]
 // The `_.property` iteratee shorthand.
 _.differenceBy([{ 'x': 2 }, { 'x': 1 }], [{ 'x': 1 }], 'x');    // => [{ 'x': 2 }]
+_.differenceBy([-1,-2,-3,-4,-5],[1,3,4], Math.abs)              // =>[-2,-5]
+```
+```js
+const animalCollection1 = [ 
+    { type: 'dog',      name: 'Mishka' }, 
+    { type: 'hamster',  name: 'Jasper' }, 
+    { type: 'cat',      name: 'Kota' }, 
+]; 
+const animalCollection2 = [ 
+    { type: 'dog',      name: 'Toby' }, 
+    { type: 'cat',      name: 'Luna' }, 
+    { type: 'fish',     name: 'Bob' }, 
+];
+_.differenceBy(
+  animalCollection1, 
+  animalCollection2, 
+  (animal) => animal.type);  // => 0: {type: "hamster", name: "Jasper"}
+```
+```js
+const animalCollection1 = [ 
+    { type: 'dog',      name: 'Mishka' }, 
+    { type: 'hamster',  name: 'Jasper' }, 
+    { type: 'cat',      name: 'Kota' }, 
+]; 
+const animalCollection2 = [ 
+    { type: 'dog',      name: 'Toby' }, 
+    { type: 'cat',      name: 'Luna' }, 
+    { type: 'fish',     name: 'Bob' }, 
+];
+const func = (animal)=>{
+    return animal.type;
+};
+_.differenceBy(animalCollection1, animalCollection2, func);   // => 0: {type: "hamster", name: "Jasper"}
 ```
 
 [return to “Array” Methods](#array-methods)
@@ -442,6 +475,40 @@ var array = [{ 'x': 1 }, { 'x': 2 }, { 'x': 3 }, { 'x': 1 }];
 _.pullAllBy(array, [{ 'x': 1 }, { 'x': 3 }], 'x');
 console.log(array);   // => [{ 'x': 2 }]
 ```
+```js
+const animalCollection1 = [ 
+    { type: 'dog',      name: 'Mishka' }, 
+    { type: 'hamster',  name: 'Jasper' }, 
+    { type: 'cat',      name: 'Kota' }, 
+]; 
+const animalCollection2 = [ 
+    { type: 'dog',      name: 'Toby' }, 
+    { type: 'cat',      name: 'Luna' }, 
+    { type: 'fish',     name: 'Bob' }, 
+];
+_.pullAllBy(
+  animalCollection1, 
+  animalCollection2, 
+  (animal) => animal.type);  
+console.log(animalCollection1); // => 0: {type: "hamster", name: "Jasper"}
+```
+```js
+const animalCollection1 = [ 
+    { type: 'dog',      name: 'Mishka' }, 
+    { type: 'hamster',  name: 'Jasper' }, 
+    { type: 'cat',      name: 'Kota' }, 
+]; 
+const animalCollection2 = [ 
+    { type: 'dog',      name: 'Toby' }, 
+    { type: 'cat',      name: 'Luna' }, 
+    { type: 'fish',     name: 'Bob' }, 
+];
+const func = (animal)=>{
+    return animal.type;
+};
+_.pullAllBy(animalCollection1, animalCollection2, func);
+console.log(animalCollection1); // => 0: {type: "hamster", name: "Jasper"}
+```
 
 [return to “Array” Methods](#array-methods)
 
@@ -456,6 +523,22 @@ console.log(array);   // => [{ 'x': 2 }]
 ```js
 var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
 _.differenceWith(objects, [{ 'x': 1, 'y': 2 }], _.isEqual);   // => [{ 'x': 2, 'y': 1 }]
+```
+```js
+const animalCollection1 = [ 
+    { type: 'dog',      name: 'Mishka' }, 
+    { type: 'hamster',  name: 'Jasper' }, 
+    { type: 'cat',      name: 'Kota' }, 
+]; 
+const animalCollection2 = [ 
+    { type: 'dog',      name: 'Toby' }, 
+    { type: 'cat',      name: 'Luna' }, 
+    { type: 'fish',     name: 'Bob' }, 
+];
+const funcwith = (animalCollection1, animalCollection2)=>{
+    return animalCollection1.type === animalCollection2.type;
+};
+_.differenceWith(animalCollection1, animalCollection2, funcwith);   // => {type: "hamster", name: "Jasper"}
 ```
 
 [return to “Array” Methods](#array-methods)
@@ -473,6 +556,23 @@ var array = [{ 'x': 1, 'y': 2 }, { 'x': 3, 'y': 4 }, { 'x': 5, 'y': 6 }];
 _.pullAllWith(array, [{ 'x': 3, 'y': 4 }], _.isEqual);
 console.log(array);     // => [{ 'x': 1, 'y': 2 }, { 'x': 5, 'y': 6 }]
 ```
+```js
+const animalCollection1 = [ 
+    { type: 'dog',      name: 'Mishka' }, 
+    { type: 'hamster',  name: 'Jasper' }, 
+    { type: 'cat',      name: 'Kota' }, 
+]; 
+const animalCollection2 = [ 
+    { type: 'dog',      name: 'Toby' }, 
+    { type: 'cat',      name: 'Luna' }, 
+    { type: 'fish',     name: 'Bob' }, 
+];
+const funcwith = (animalCollection1, animalCollection2)=>{
+    return animalCollection1.type === animalCollection2.type;
+};
+_.pullAllWith(animalCollection1, animalCollection2, funcwith);
+console.log(animalCollection1);     // => {type: "hamster", name: "Jasper"}
+```
 
 [return to “Array” Methods](#array-methods)
 
@@ -481,6 +581,20 @@ console.log(array);     // => [{ 'x': 1, 'y': 2 }, { 'x': 5, 'y': 6 }]
 
 ```js
 _.union([2], [1, 2]);   // => [2, 1]
+```
+```js
+const coordinatesCollection1 = [ 
+    { x: 0, y: 3 }, 
+    { x: 2, y: 5 }, 
+    { x: 2, y: 4 },
+];
+const coordinatesCollection2 = [ 
+    { x: 0, y: 7 }, 
+    { x: 1, y: 8 }, 
+    { x: 2, y: 10 }, 
+];
+_.union(coordinatesCollection1, coordinatesCollection2, 'x');   
+// => [{x: 0, y: 3}, {x: 2, y: 5}, {x: 1, y: 8}, { x: 0, y: 7 }, { x: 1, y: 8 }, { x: 2, y: 10 } ]
 ```
 
 [return to “Array” Methods](#array-methods)
@@ -498,6 +612,20 @@ _.unionBy([2.1], [1.2, 2.3], Math.floor);                 // => [2.1, 1.2]
 // The `_.property` iteratee shorthand.
 _.unionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');   // => [{ 'x': 1 }, { 'x': 2 }]
 ```
+```js
+const coordinatesCollection1 = [ 
+    { x: 0, y: 3 }, 
+    { x: 2, y: 5 }, 
+    { x: 2, y: 4 },
+];
+const coordinatesCollection2 = [ 
+    { x: 0, y: 7 }, 
+    { x: 1, y: 8 }, 
+    { x: 2, y: 10 }, 
+    { x: 2, y: 4 }, 
+];
+_.unionBy(coordinatesCollection1, coordinatesCollection2, 'x');   // => [{x: 0, y: 3}, {x: 2, y: 5}, {x: 1, y: 8}]
+```
 
 [return to “Array” Methods](#array-methods)
 
@@ -513,6 +641,21 @@ var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
 var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
 _.unionWith(objects, others, _.isEqual);    // => [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }, { 'x': 1, 'y': 1 }]
 ``` 
+```js
+const coordinatesCollection1 = [ 
+    { x: 0, y: 3 }, 
+    { x: 2, y: 5 }, 
+    { x: 2, y: 4 },
+];
+const coordinatesCollection2 = [ 
+    { x: 0, y: 7 }, 
+    { x: 1, y: 8 }, 
+    { x: 2, y: 10 }, 
+    { x: 2, y: 4 },
+];
+_.unionWith(coordinatesCollection1, coordinatesCollection2, 'x');   
+// => [{x: 0, y: 3}, {x: 2, y: 5}, {x: 2, y: 4}, {x: 0, y: 7}, {x: 1, y: 8}, {x: 2, y: 10}, {x: 2, y: 4}]
+```
 
 [return to “Array” Methods](#array-methods)
 
@@ -527,6 +670,20 @@ _.unionWith(objects, others, _.isEqual);    // => [{ 'x': 1, 'y': 2 }, { 'x': 2,
 _.intersectionBy([2.1, 1.2], [2.3, 3.4], Math.floor);             // => [2.1]
 // The `_.property` iteratee shorthand.
 _.intersectionBy([{ 'x': 1 }], [{ 'x': 2 }, { 'x': 1 }], 'x');    // => [{ 'x': 1 }]
+```
+```js
+const coordinatesCollection1 = [ 
+    { x: 0, y: 3 }, 
+    { x: 2, y: 5 }, 
+    { x: 2, y: 4 },
+];
+const coordinatesCollection2 = [ 
+    { x: 0, y: 7 }, 
+    { x: 1, y: 8 }, 
+    { x: 2, y: 10 }, 
+    { x: 2, y: 4 },
+];
+_.intersectionBy(coordinatesCollection1, coordinatesCollection2, 'x');  // => [{x: 0, y: 3}, {x: 2, y: 5}]
 ```
 
 [return to “Array” Methods](#array-methods)
@@ -543,8 +700,67 @@ var objects = [{ 'x': 1, 'y': 2 }, { 'x': 2, 'y': 1 }];
 var others = [{ 'x': 1, 'y': 1 }, { 'x': 1, 'y': 2 }];
 _.intersectionWith(objects, others, _.isEqual);   // => [{ 'x': 1, 'y': 2 }]
 ```
+```js
+const coordinatesCollection1 = [ 
+    { x: 0, y: 7, z:2 },
+    { x: 2, y: 5, z:1 },
+    { x: 1, y: 1, z: 1}, 
+];
+const coordinatesCollection2 = [ 
+    { x: 0, y: 7, z: 3 }, 
+    { x: 1, y: 8, z: 1 }, 
+    { x: 2, y: 10, z: 1 }, 
+]; 
+const func = ({x1, z1}, {x2, z2})=>{ 
+    return x1 == x2 && z1 == z2 ;
+} 
+_.intersectionWith(coordinatesCollection1, coordinatesCollection2, func); // => {x: 0, y: 7, z: 2}
+```
 
 [return to “Array” Methods](#array-methods)
+
+----------------------------------------------------------------------------------------------------------
+
+**[⬆ return to commands summary](#commands-summary)**
+
+----------------------------------------------------------------------------------------------------------
+
+## "Colletion" Methods
+
+### countBy
+[return to "Colletion" Methods](#colletion-methods)
+### orderBy
+[return to "Colletion" Methods](#colletion-methods)
+### filter
+[return to "Colletion" Methods](#colletion-methods)
+### map
+[return to "Colletion" Methods](#colletion-methods)
+### sample
+[return to "Colletion" Methods](#colletion-methods)
+### sampleBy
+[return to "Colletion" Methods](#colletion-methods)
+### shuffle
+[return to "Colletion" Methods](#colletion-methods)
+### defaults
+[return to "Colletion" Methods](#colletion-methods)
+### forIn
+[return to "Colletion" Methods](#colletion-methods)
+### forOwn
+[return to "Colletion" Methods](#colletion-methods)
+### ary
+[return to "Colletion" Methods](#colletion-methods)
+### map
+[return to "Colletion" Methods](#colletion-methods)
+### unary
+[return to "Colletion" Methods](#colletion-methods)
+### curry
+[return to "Colletion" Methods](#colletion-methods)
+### curryRight
+[return to "Colletion" Methods](#colletion-methods)
+### partial
+[return to "Colletion" Methods](#colletion-methods)
+### memorize
+[return to "Colletion" Methods](#colletion-methods)
 
 ----------------------------------------------------------------------------------------------------------
 
