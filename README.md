@@ -72,6 +72,7 @@
 
 ## "Util" Methods
 
+### noop
 * `_.noop`, This method returns undefined.
 
 ```js
@@ -80,6 +81,7 @@ _.times(2, _.noop);   // => [undefined, undefined]
 
 [return to “Util” Methods](#"util"-methods)
 
+### nthArg
 * `_.nthArg([n=0])`, Creates a function that gets the argument at index `n`. If `n` is negative, the nth argument from the end is returned.
 
 ```js
@@ -490,10 +492,6 @@ console.log(array);     // => [{ 'x': 1, 'y': 2 }, { 'x': 5, 'y': 6 }]
 ```
 
 [return to “Array” Methods](#“array”-methods)
-
-
-
-
 
 ### union
 
